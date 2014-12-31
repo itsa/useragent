@@ -12,7 +12,9 @@
  * @since 0.0.1
 */
 
-// var NAME = '[io-assets]: ';
+require('polyfill');
+
+var NAME = '[useragent]: ';
 
 module.exports = function (window) {
 
