@@ -21,14 +21,7 @@ module.exports = function (window) {
     var UserAgent,
         navigator = window.navigator;
 
-    if (!window._ITSAmodules) {
-        Object.defineProperty(window, '_ITSAmodules', {
-            configurable: false,
-            enumerable: false,
-            writable: false,
-            value: {} // `writable` is false means we cannot chance the value-reference, but we can change {} its members
-        });
-    }
+    window._ITSAmodules || window.protectedProp('_ITSAmodules', {});
 
 /*jshint boss:true */
     if (UserAgent=window._ITSAmodules.UserAgent) {
