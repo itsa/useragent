@@ -24,7 +24,8 @@
         "node": "*"
     },
     "dependencies": {
-        "polyfill": "itsa/polyfill"
+        "polyfill": "itsa/polyfill",
+        "js-ext": "itsa/js-ext"
     },
     "devDependencies": {
         "chai": "^1.9.1",
