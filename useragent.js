@@ -15,14 +15,15 @@
 require('polyfill');
 require('js-ext/lib/object.js');
 
-var NAME = '[useragent]: ';
+var NAME = '[useragent]: ',
+    createHashMap = require('js-ext/extra/hashmap.js').createMap;
 
 module.exports = function (window) {
 
     var UserAgent,
         navigator = window.navigator;
 
-    window._ITSAmodules || Object.protectedProp(window, '_ITSAmodules', {});
+    window._ITSAmodules || Object.protectedProp(window, '_ITSAmodules', createHashMap());
 
 /*jshint boss:true */
     if (UserAgent=window._ITSAmodules.UserAgent) {
