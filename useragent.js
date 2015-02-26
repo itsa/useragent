@@ -15,8 +15,7 @@
 require('polyfill');
 require('js-ext/lib/object.js');
 
-var NAME = '[useragent]: ',
-    createHashMap = require('js-ext/extra/hashmap.js').createMap;
+var createHashMap = require('js-ext/extra/hashmap.js').createMap;
 
 module.exports = function (window) {
 
