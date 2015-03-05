@@ -14,6 +14,7 @@
 
 require('polyfill');
 require('js-ext/lib/object.js');
+require('js-ext/lib/string.js');
 
 var createHashMap = require('js-ext/extra/hashmap.js').createMap;
 
@@ -31,7 +32,8 @@ module.exports = function (window) {
     }
 
     window._ITSAmodules.UserAgent = UserAgent = {
-        isMobile: ('ontouchstart' in window) || (window.navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+        isMobile: ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0),
+        isSafari: navigator.userAgent.contains('AppleWebKit')
     };
 
     return UserAgent;
