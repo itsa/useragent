@@ -37,7 +37,7 @@ module.exports = function (window) {
     isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
     isSafari = useragent.contains('AppleWebKit');
     isIE = !!ieTest;
-    ieVersion = isIE && parseFloat(ieTest[1], 10);
+    ieVersion = isIE && parseFloat(ieTest[1]);
 
     window._ITSAmodules.UserAgent = UserAgent = {
         isMobile: isMobile,
