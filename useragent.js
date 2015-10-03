@@ -24,7 +24,9 @@ module.exports = function (window) {
         navigator = window.navigator,
         useragent = navigator.userAgent,
         ieTest = useragent.match(/MSIE (\d+)\./),
-        isMobile, isSafari, isIE, ieVersion;
+        ieTest10_11 = useragent.match(/Windows NT(?:.)*rv:(\d+)/),
+        ieTestEdge = useragent.match(/Windows NT(?:.)*Edge\/(\d+)/),
+        isMobile, isSafari, isIE_below10, isIE_10_11, isIE_Edge, ieVersion;
 
     window._ITSAmodules || Object.protectedProp(window, '_ITSAmodules', createHashMap());
 
@@ -36,13 +38,23 @@ module.exports = function (window) {
 
     isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
     isSafari = useragent.contains('AppleWebKit');
-    isIE = !!ieTest;
-    ieVersion = isIE && parseFloat(ieTest[1]);
+    isIE_below10 = !!ieTest;
+    isIE_10_11 = !isIE_below10 && !!ieTest10_11;
+    isIE_Edge = !isIE_below10 && !isIE_10_11 && !!ieTestEdge;
+    if (isIE_below10) {
+        ieVersion = parseFloat(ieTest[1]);
+    }
+    else if (isIE_10_11) {
+        ieVersion = parseFloat(ieTest10_11[1]);
+    }
+    else if (isIE_Edge) {
+        ieVersion = parseFloat(ieTestEdge[1]);
+    }
 
     window._ITSAmodules.UserAgent = UserAgent = {
         isMobile: isMobile,
         isSafari: isSafari,
-        isIE: isIE,
+        isIE: isIE_below10 || isIE_10_11 || isIE_Edge,
         ieVersion: ieVersion
     };
 
